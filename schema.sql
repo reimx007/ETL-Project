@@ -1,5 +1,5 @@
-drop table crime;
-drop table income;
+-- drop table crime;
+-- drop table income;
 drop table accidents;
 -- Create tables for data to be loaded into
 create table crime(
@@ -17,14 +17,13 @@ CREATE TABLE income (
 );
 CREATE TABLE accidents (
   ID TEXT PRIMARY KEY,
-  Start_Time TEXT,
-  End_Time TEXT,
-  Description TEXT,
-  County TEXT
+  County TEXT,
+  Crash_count INT
 );
+
 -- Join the tables
 
-SELECT crime.year, crime.updated_county, income.med_HHI, accidents.description, accidents.Start_Time, accidents.End_Time, crime.VehicleTheft_sum, crime.Violent_sum
+SELECT crime.year, crime.updated_county, income.med_HHI, accidents.Crash_count, crime.VehicleTheft_sum, crime.Violent_sum
 FROM crime
 JOIN income ON crime.updated_county = income.county
 JOIN accidents on income.county = accidents.County
